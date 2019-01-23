@@ -33,7 +33,7 @@ variants_table = pd.read_table(sys.argv[1], sep="\t")
 ### From coordinates to HGVS ###
 ################################
 if str(sys.argv[2]) == "toHGVS":
-    # NC_000017.10 NCBI ID for chromosome 17 in hg19
+    # NC_000017.10 NCBI ID for chromosome 17 in GRCh37
     assembly="NC_000017.10"
     START = list(variants_table['Start'])
     END = list(variants_table['End'])
@@ -106,7 +106,7 @@ else:
     final_table2 = pd.DataFrame(columns=['HGVS_c', 'HGVS_g', 'HGVS_p','Chr','Start','End', 'Ref', 'Alt'], index=range(len(cDNA)))
 
     hdp = hgvs.dataproviders.uta.connect()
-    variantmapper = hgvs.variantmapper.VariantMapper(hdp)
+    variantmapper = hgvs.assemblymapper.AssemblyMapper(hdp, assembly_name='GRCh37', alt_aln_method='splign')
     hp = hgvs.parser.Parser()
 
     # Map HGVS to genome
@@ -116,7 +116,7 @@ else:
         HGVS_c = hp.parse_hgvs_variant(v_c)
         print("Converting: " + str(HGVS_c))
 
-        HGVS_g_str = variantmapper.c_to_g(HGVS_c, "NC_000017.10")
+        HGVS_g_str = variantmapper.c_to_g(HGVS_c)
         HGVS_p_str = variantmapper.c_to_p(HGVS_c)
 
         ### convert SNV ###
