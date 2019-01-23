@@ -8,7 +8,7 @@ To use this script follow instructions.
 Clone this repository to your local directory (no need for installation)
 
 ## Instal python packages
-Install following packages to your Python2.7 enviroment (python2+ is required fro hgvs package)
+Install following packages to your Python2.7 enviroment (python2+ is required for hgvs package)
 
 1) hgvs (https://hgvs.readthedocs.io/en/stable/installation.html)
 2) pandas (http://pandas.pydata.org/pandas-docs/stable/install.html)
